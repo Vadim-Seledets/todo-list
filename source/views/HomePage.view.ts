@@ -12,7 +12,7 @@ export function HomePageView(app: App) {
 
         let index: number = 0
         app.taskList.forEach((element) => {
-          if (element.notCompleted)
+          if (!element.isCompleted)
             TaskLine(index.toString(), element, app)
           index++
         })
@@ -23,7 +23,7 @@ export function HomePageView(app: App) {
           })
         }
         app.taskList.forEach((element) => {
-          if (!element.notCompleted)
+          if (element.isCompleted)
             TaskLine(index.toString(), element, app)
           index++
         })

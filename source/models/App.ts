@@ -25,8 +25,8 @@ export class App extends ObservableObject {
     const saveTasks = JSON.parse(localStorage.getItem('tasks') as string) as Task[]
     if (saveTasks !== null) {
       this.taskList = saveTasks.map(x => {
-        const task = new Task(x.text)
-        task.notCompleted = x.notCompleted
+        const task = new Task(x.description)
+        task.isCompleted = x.isCompleted
         return task
       })
     }
@@ -65,20 +65,20 @@ export class App extends ObservableObject {
 
   @transaction
   editTask(task: Task, newText?: string): void {
-    if (task.isEdit) {
+    if (task.isEditing) {
       if (newText != null) {
-        task.text = this.convertLineBreaks(newText)
+        task.description = this.convertLineBreaks(newText)
       }
-      task.isEdit = false
+      task.isEditing = false
     }
     else {
-      task.isEdit = true
+      task.isEditing = true
     }
   }
 
   @reaction
   updateTasks(): void {
-    this.completedTasks = this.taskList.filter(x => !x.notCompleted).length
+    this.completedTasks = this.taskList.filter(x => x.isCompleted).length
     localStorage.setItem('tasks', JSON.stringify(this.taskList))
   }
 

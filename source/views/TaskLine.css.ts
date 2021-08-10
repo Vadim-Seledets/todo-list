@@ -87,20 +87,20 @@ export const style = restyler(() => {
     `,
 
     TaskElement: css`
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 40%;
+      min-height: 45px;
       margin: 0;
       padding: 9px 10px;
-      width: 40%;
-      word-wrap: break-word;
       flex: 1 0 auto;
-      min-height: 45px;
+      word-wrap: break-word;
       border-radius: 3px 0 0 3px;
       background-color: rgba(36, 36, 36, 1);
       backdrop-filter: blur(5px);
       transition: background-color .2s ease;
       user-select: none;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
       :hover {
         transition: background-color .2s ease;
         background-color: rgba(53, 56, 58, 1);
@@ -108,26 +108,12 @@ export const style = restyler(() => {
       :active {
         background-color: rgba(36, 36, 36, 1);
       }
-    `,
-
-    InactiveTaskElement: css`
-      text-decoration: line-through;
-      margin: 0;
-      flex: 1 0 auto;
-      min-height: 45px;
-      padding: 9px 10px;
-      word-wrap: break-word;
-      width: 40%;
-      border-radius: 3px 0 0 3px;
-      backdrop-filter: blur(5px);
-      background-color: rgba(36, 36, 36, 0.35);
-      transition: background-color .2s ease;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      :hover {
-        transition: background-color .2s ease;
-        background-color: rgba(53, 56, 58, 0.35);
+      &[rx-inactive=true] {
+        text-decoration: line-through;
+        background-color: rgba(36, 36, 36, 0.35);
+        :hover {
+          background-color: rgba(53, 56, 58, 0.35);
+        }
       }
     `,
 

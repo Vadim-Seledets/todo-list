@@ -1,19 +1,18 @@
 import { ObservableObject, transaction } from 'reactronic'
 
 export class Task extends ObservableObject {
-  text: string
-  notCompleted: boolean
-  isEdit: boolean
+  description: string
+  isCompleted: boolean
+  isEditing: boolean
 
-  constructor(text: string) {
+  constructor(description: string) {
     super()
-    this.text = text
-    this.notCompleted = true
-    this.isEdit = false
+    this.description = description
+    this.isCompleted = false
+    this.isEditing = false
   }
 
-  @transaction
   changeActivity(): void {
-    this.notCompleted = !this.notCompleted
+    this.isCompleted = !this.isCompleted
   }
 }
